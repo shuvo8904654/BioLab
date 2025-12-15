@@ -1,0 +1,125 @@
+.punnett-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.punnett-modal {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.punnett-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.punnett-header h3 {
+  font-size: 1rem;
+  color: #222;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.punnett-grid {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.punnett-cell {
+  padding: 12px 8px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.punnett-cell.corner {
+  background: transparent;
+}
+
+.punnett-cell.header {
+  background: #f0f0f0;
+  font-weight: 600;
+  color: #444;
+  font-size: 0.85rem;
+}
+
+.punnett-cell.result {
+  background: #f8fafc;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.punnett-cell .alleles {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.punnett-cell .expressed {
+  font-size: 0.8rem;
+  color: #222;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.probabilities h4 {
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.prob-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.prob-trait {
+  width: 80px;
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.prob-bar {
+  flex: 1;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.prob-fill {
+  height: 100%;
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+.prob-value {
+  width: 40px;
+  font-size: 0.75rem;
+  color: #444;
+  text-align: right;
+}
+
+
+///
