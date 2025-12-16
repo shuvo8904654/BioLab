@@ -1,10 +1,11 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import './App.css';
 import DNAViewer from './components/DNAViewer';
 import ControlPanel from './components/ControlPanel';
 import GeneInfo from './components/GeneInfo';
 import OrganismDisplay from './components/OrganismDisplay';
 import PunnettSquare from './components/PunnettSquare';
+import Tutorial from './components/Tutorial';
 import {
   generateRandomGenome,
   crossover,
@@ -29,6 +30,25 @@ function App() {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [theme, setTheme] = useState('dark');
   const [colorBlindMode, setColorBlindMode] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [tutorialStep, setTutorialStep] = useState(0);
+
+  useEffect(() => {
+    const hasSeenTutorial = localStorage.getItem('hasSeenTutorial');
+    if (!hasSeenTutorial) {
+      setShowTutorial(true);
+    }
+  }, []);
+
+  const closeTutorial = () => {
+    setShowTutorial(false);
+    localStorage.setItem('hasSeenTutorial', 'true');
+  };
+
+  const openTutorial = () => {
+    setTutorialStep(0);
+    setShowTutorial(true);
+  };
 
   const handleCrossover = useCallback(() => {
     const child = crossover(genome1, genome2);
@@ -141,6 +161,9 @@ function App() {
         </div>
 
         <div className="viewer-controls">
+          <button onClick={openTutorial} title="Show tutorial">
+            Tutorial
+          </button>
           <button onClick={toggleSound} title="Toggle sound">
             {soundEnabled ? 'Sound On' : 'Sound Off'}
           </button>
@@ -254,8 +277,16 @@ function App() {
           onClose={() => setShowPunnett(false)}
         />
       )}
+
+      <Tutorial
+        isOpen={showTutorial}
+        onClose={closeTutorial}
+        currentStep={tutorialStep}
+        setCurrentStep={setTutorialStep}
+      />
     </div>
   );
 }
 
 export default App;
+
