@@ -174,3 +174,72 @@
   color: #fff;
   border-color: #1a1a1a;
 }
+
+@media (max-width: 500px) {
+  .control-panel {
+    padding: 10px;
+  }
+
+  .control-panel h3 {
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+  }
+
+  .control-group {
+    margin-bottom: 10px;
+  }
+
+  .control-group label {
+    font-size: 0.7rem;
+  }
+
+  .control-group select {
+    padding: 8px 10px;
+    font-size: 0.7rem;
+  }
+
+  .toggle-label {
+    padding: 6px 0;
+  }
+
+  .toggle-text {
+    font-size: 0.7rem;
+  }
+
+  .toggle-slider {
+    width: 32px;
+    height: 18px;
+  }
+
+  .toggle-slider::after {
+    width: 14px;
+    height: 14px;
+  }
+
+  .toggle-label input:checked + .toggle-slider::after {
+    transform: translateX(14px);
+  }
+
+  .theme-buttons button {
+    padding: 6px 8px;
+    font-size: 0.7rem;
+  }
+
+  .legend {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  .legend h4 {
+    font-size: 0.65rem;
+  }
+
+  .legend-item {
+    font-size: 0.6rem;
+  }
+
+  .color-dot {
+    width: 6px;
+    height: 6px;
+  }
+}

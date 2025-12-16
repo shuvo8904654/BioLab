@@ -205,3 +205,57 @@
 .avatar-hair[data-type='wavy'] {
   border-radius: 40% 40% 0 0;
 }
+
+@media (max-width: 500px) {
+  .organism-display {
+    padding: 6px;
+  }
+
+  .organism-avatar {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 6px;
+  }
+
+  .avatar-eyes {
+    gap: 8px;
+  }
+
+  .eye {
+    width: 6px;
+    height: 6px;
+  }
+
+  .eye::after {
+    width: 3px;
+    height: 3px;
+    top: 1.5px;
+    left: 1.5px;
+  }
+
+  .avatar-mouth {
+    width: 10px;
+    height: 3px;
+  }
+
+  .traits-list {
+    gap: 1px;
+  }
+
+  .trait {
+    font-size: 0.6rem;
+  }
+
+  .traits-extra {
+    gap: 3px;
+  }
+
+  .trait-tag {
+    font-size: 0.5rem;
+    padding: 1px 4px;
+  }
+
+  .genotype-info {
+    display: none;
+  }
+}

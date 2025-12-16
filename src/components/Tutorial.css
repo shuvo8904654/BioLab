@@ -135,15 +135,58 @@
 
 @media (max-width: 500px) {
   .tutorial-modal {
-    padding: 24px;
-    margin: 16px;
+    padding: 20px;
+    margin: 12px;
+    width: 95%;
+  }
+
+  .tutorial-progress {
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+
+  .progress-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .tutorial-content {
+    margin-bottom: 24px;
   }
 
   .tutorial-content h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
   }
 
   .tutorial-content p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .tutorial-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .nav-buttons {
+    width: 100%;
+  }
+
+  .prev-btn,
+  .next-btn {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+
+  .skip-btn {
+    font-size: 0.8rem;
+  }
+
+  .step-counter {
+    top: 12px;
+    right: 16px;
+    font-size: 0.7rem;
   }
 }
