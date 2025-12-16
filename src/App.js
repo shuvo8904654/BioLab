@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import './App.css';
 import DNAViewer from './components/DNAViewer';
 import ControlPanel from './components/ControlPanel';
@@ -32,6 +32,9 @@ function App() {
   const [colorBlindMode, setColorBlindMode] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
+  const [dnaFullscreen, setDnaFullscreen] = useState(false);
+  const [dnaHeight, setDnaHeight] = useState(40);
+  const isDragging = useRef(false);
 
   useEffect(() => {
     const hasSeenTutorial = localStorage.getItem('hasSeenTutorial');
@@ -39,6 +42,40 @@ function App() {
       setShowTutorial(true);
     }
   }, []);
+
+  useEffect(() => {
+    const handleMove = (e) => {
+      if (!isDragging.current) return;
+      e.preventDefault();
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const vh = (clientY / window.innerHeight) * 100;
+      const clamped = Math.min(Math.max(vh, 25), 75);
+      setDnaHeight(clamped);
+    };
+
+    const handleEnd = () => {
+      isDragging.current = false;
+      document.body.style.userSelect = '';
+    };
+
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mouseup', handleEnd);
+    window.addEventListener('touchmove', handleMove, { passive: false });
+    window.addEventListener('touchend', handleEnd);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('mouseup', handleEnd);
+      window.removeEventListener('touchmove', handleMove);
+      window.removeEventListener('touchend', handleEnd);
+    };
+  }, []);
+
+  const startResize = (e) => {
+    e.preventDefault();
+    isDragging.current = true;
+    document.body.style.userSelect = 'none';
+  };
 
   const closeTutorial = () => {
     setShowTutorial(false);
@@ -127,7 +164,10 @@ function App() {
 
   return (
     <div className="app">
-      <div className="dna-fullscreen">
+      <div 
+        className={`dna-fullscreen ${dnaFullscreen ? 'expanded' : ''}`}
+        style={{ '--dna-height': `${dnaHeight}vh` }}
+      >
         <DNAViewer
           genome={getCurrentGenome()}
           viewMode={viewMode}
@@ -167,10 +207,27 @@ function App() {
           <button onClick={toggleSound} title="Toggle sound">
             {soundEnabled ? 'Sound On' : 'Sound Off'}
           </button>
+          <button 
+            className="fullscreen-btn"
+            onClick={() => setDnaFullscreen(!dnaFullscreen)} 
+            title={dnaFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+          >
+            {dnaFullscreen ? 'Exit' : 'Fullscreen'}
+          </button>
+        </div>
+      <div 
+          className="resize-handle"
+          onMouseDown={startResize}
+          onTouchStart={startResize}
+        >
+          <div className="resize-bar"></div>
         </div>
       </div>
 
-      <div className="side-panel">
+      <div 
+        className={`side-panel ${dnaFullscreen ? 'hidden' : ''}`}
+        style={{ '--dna-height': `${dnaHeight}vh` }}
+      >
         <div className="panel-header">
           <h1>3D Genetics Simulator</h1>
         </div>
