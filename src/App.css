@@ -276,22 +276,28 @@
 @media (max-width: 900px) {
   .app {
     flex-direction: column;
-    height: auto;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
   }
 
   .dna-fullscreen {
-    height: 45vh;
-    min-height: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    min-height: 280px;
+    z-index: 10;
     flex: none;
   }
 
   .side-panel {
     width: 100%;
-    height: auto;
-    min-height: 55vh;
+    height: 60vh;
+    margin-top: 40vh;
     border-left: none;
     border-top: 1px solid #e0e0e0;
+    overflow-y: auto;
   }
 
   .panel-content {
@@ -323,12 +329,13 @@
 
 @media (max-width: 500px) {
   .dna-fullscreen {
-    height: 40vh;
-    min-height: 250px;
+    height: 35vh;
+    min-height: 220px;
   }
 
   .side-panel {
-    min-height: 60vh;
+    height: 65vh;
+    margin-top: 35vh;
   }
 
   .panel-header {
